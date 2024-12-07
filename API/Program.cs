@@ -10,6 +10,19 @@ builder.Services.AddControllers();
 
 builder.Services.AddAplicationServices(builder.Configuration);
 
+
+// Add CORS configuration.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.AllowAnyOrigin() // Allow all origins (not recommended for production)
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
